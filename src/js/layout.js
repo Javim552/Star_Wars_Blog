@@ -1,42 +1,41 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-
-import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+import { ListPlanets } from "./views/planets";
+import {People} from "./views/people"
 import injectContext from "./store/appContext";
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import Inicio from "./views/inicio";
 
 //create your first component
 const Layout = () => {
-	//the basename is used when your project is published in a subdirectory and not in the root of the domain
-	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
-	const basename = process.env.BASENAME || "";
+
 
 	return (
 		<div>
-			<BrowserRouter basename={basename}>
-				<ScrollToTop>
-					<Navbar />
+			{/* El BrowserRouter es lo que nos permite movernos pagina por pagina. Es decir, lo primero que debemos hacer es poner eso y para que la pagina cambie segun la url del navegador debe ir dentro del swich con el exact path que es ruta exacta */}
+			
+			<BrowserRouter> 
+			<Navbar />
 					<Switch>
 						<Route exact path="/">
-							<Home />
+							<Inicio/>
+							
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/planets">
+							<ListPlanets/>
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path= "/people">
+							<People/>
 						</Route>
+							
+							
+				
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
 					<Footer />
-				</ScrollToTop>
 			</BrowserRouter>
 		</div>
 	);

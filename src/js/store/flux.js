@@ -1,45 +1,35 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+  return {
+    store: {
+      favoritos: [],
+	  people: {},
+	  planets: {}
+    },
+    actions: {
+      // Use getActions to call a function within a fuction
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+      Favorites: (fav) => {
+        const store = getStore();
+        if (!store.favoritos.includes(fav)) {
+         
+          // filter
+          setStore({ favoritos: [...store.favoritos, fav] });
+        
+         }else {
+          let newFav = store.favoritos.filter( favorito =>
+            favorito != fav
+            )
+           setStore({ favoritos: newFav});
+         }
+      },
+	  getGlobal: (whatToGet) => {
+        fetch("https://www.swapi.tech/api/" + whatToGet)
+          .then((response) => response.json())
+          .then((result) => setStore({[whatToGet]: result}))
+          .catch((error) => console.log("error", error));
+      },
+    },
+  };
 };
 
 export default getState;

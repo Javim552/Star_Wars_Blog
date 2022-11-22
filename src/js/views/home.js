@@ -1,15 +1,22 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import { Link, useHistory  } from "react-router-dom";
 import "../../styles/home.css";
 
-export const Home = () => (
+export const Home = () => {
+// Para movernos entre paginas en el codigo javascript 
+	const history = useHistory ();
+	const goto = () =>{
+		history.push ("/test")
+		
+	}
+
+
+return(
 	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+		
+		<Link to= "/test">Ir a Test</Link>
+		<button onClick = {goto}>Ir a test por JS</button>
+		
 	</div>
 );
+}

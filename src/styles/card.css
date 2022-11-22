@@ -1,0 +1,24 @@
+.card{
+    border-color: rgb(170, 245, 30);
+    
+    border-width: 2px;
+    border-radius: 20px;
+    background: rgba(240, 23, 52, 0.5);
+    
+    
+    
+}
+h5{
+    color: greenyellow;
+}
+
+button{
+    border-radius: 10%;
+    background-color: red;
+    border-color:rgb(170, 245, 30) ;
+}
+body{
+    background: url("http://getwallpapers.com/wallpaper/full/9/0/4/29964.jpg") no-repeat center top;
+
+}
+
